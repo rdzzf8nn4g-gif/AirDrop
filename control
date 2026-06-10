@@ -1,1 +1,9 @@
-
+Package: com.iosdump.airdrop
+Name: AirDrop
+Depends: mobilesubstrate
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: 突破 iOS 16-17+ 隔空投送 10 分钟限制 (极致稳定版)。
+Maintainer: iosdump
+Author: iosdump
+Section: Tweaks
