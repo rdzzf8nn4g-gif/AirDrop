@@ -1,1 +1,11 @@
+#!/bin/sh
 
+if [ "$1" = "remove" ] || [ "$1" = "purge" ]; then
+    echo "1"
+    
+    killall -9 sharingd || true
+    
+    echo "2"
+fi
+
+exit 0
