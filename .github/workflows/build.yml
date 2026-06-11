@@ -2,7 +2,6 @@ name: Build AirDrop
 
 on:
   
-  # 允许在 GitHub Actions 页面手动点击运行
   workflow_dispatch:
 
 jobs:
@@ -15,6 +14,15 @@ jobs:
     steps:
       - name: 📥 检出代码 (Checkout Repository)
         uses: actions/checkout@v4
+
+      # ================= 新增这一步 =================
+      - name: 🔧 强制修复脚本权限 (Fix Permissions)
+        run: |
+          mkdir -p layout/DEBIAN
+          chmod +x layout/DEBIAN/postinst
+          chmod +x layout/DEBIAN/postrm
+          chmod +x build.sh
+      # ==============================================
 
       - name: ⚙️ 安装依赖 (Install Dependencies)
         run: |
@@ -33,8 +41,6 @@ jobs:
 
       - name: 🚀 运行编译脚本 (Run build.sh)
         run: |
-          # 赋予执行权限并直接运行（去掉了 sudo 以防文件权限错乱导致打包失败）
-          chmod +x build.sh
           ./build.sh
 
       - name: 📤 上传编译产物 (Upload Artifacts)
