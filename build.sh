@@ -1,9 +1,11 @@
 #!/bin/bash
 # 终端执行: chmod +x build.sh
 
-echo ">>> 正在检查并赋予维护者脚本执行权限..."
-# 加上 || true 是为了防止万一哪天你删了这两个文件，脚本也不会报错中断
-chmod +x postinst postrm || true
+echo ">>> 正在修复维护者脚本换行符与权限 (防止静默失效)..."
+# 强制将 CRLF(Windows) 转换为 LF(Unix)，macOS runner 完美兼容
+perl -pi -e 's/\r$//' postinst postrm 2>/dev/null || true
+# 赋予标准的 rwxr-xr-x 权限
+chmod 0755 postinst postrm 2>/dev/null || true
 
 echo ">>> 清理旧文件..."
 make clean
