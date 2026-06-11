@@ -1,1 +1,11 @@
+#!/bin/sh
 
+if [ "$1" = "configure" ]; then
+    echo "安装完成，重启 sharingd 守护进程"
+    
+    killall -9 sharingd || true
+    
+    echo "成功！"
+fi
+
+exit 0
