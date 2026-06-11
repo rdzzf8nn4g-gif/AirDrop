@@ -1,6 +1,6 @@
 DEBUG = 0
 FINALPACKAGE = 1
-PACKAGE_VERSION = 1.0.0
+PACKAGE_VERSION = 0.0.1
 
 # 强制使用 14.5 SDK 保证兼容性，避免由于缺库导致的白苹果或崩溃
 TARGET := iphone:clang:14.5:14.0
